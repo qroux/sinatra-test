@@ -62,7 +62,7 @@ class ApplicationController < Sinatra::Base
       Post.create(title: post[:title],
                   content: post[:content],
                   photo: post[:photo],
-                  rating: post[:rating])
+                  rating: post[:rating] ||= 0)
 
       COMMENTS[i].each do |comment|
         Comment.create(post_id: Post.last.id, content: comment)
