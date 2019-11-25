@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="head-container">
+    <h3>Derniers articles</h3>
+  </div>
+  <br>
+  <hr>
+
+  <div class="position">
+    <div class="full-list">
+      <% @posts.each do |post| %>
+      <a href="/posts/<%= post.id %>">
+        <div class="full-card">
+          <div class="card-photo" style="background-image: url(<%= post.photo ||= 'https://picsum.photos/id/1074/600/600'%>)">
+          </div>
+          <div class="card-text">
+            <h4><%= post.title %></h4>
+          </div>
+        </div>
+      </a>
+      <% end %>
+    </div>
+  </div>
+
+<!--   <div class="full-list">
+      <% @posts.each do |post| %>
+        <a href="/posts/<%= post.id %>">
+          <div class="item">
+            <h4><%= post.title %></h4>
+            <div>
+              note: <%= post.rating ||= '-' %>
+            </div>
+          </div>
+        </a>
+      <% end %>
+  </div> -->
+</div>
