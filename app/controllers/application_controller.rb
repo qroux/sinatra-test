@@ -86,6 +86,7 @@ class ApplicationController < Sinatra::Base
   get '/generate' do
     Post.create(title: Faker::Marketing.buzzwords,
                 photo: "https://picsum.photos/id/#{rand(1000)}/600/600",
+                rating: 0,
                 content: Faker::Lorem.paragraph(sentence_count: 3,
                                                 supplemental: true,
                                                 random_sentences_to_add: 4))
