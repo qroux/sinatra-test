@@ -29,10 +29,12 @@
   <hr>
   <div class="row">
     <% @posts.each do |post| %>
-    <div class="posts-list col-12 m-1 py-3">
-      <a href="/posts/<%= post.id %>"><h5><%= post.title.capitalize %></h5></a>
-      <h5><%= post.rating ||= '-' %> <i class="far fa-star"></i></h5>
-    </div>
+    <a href="/posts/<%= post.id %>" class="col-12">
+      <div class="posts-list m-1 p-3">
+        <h5><%= post.title.capitalize %></h5>
+        <h5><%= post.rating ||= '-' %> <i class="far fa-star"></i></h5>
+      </div>
+    </a>
     <% end %>
   </div>
 </div>

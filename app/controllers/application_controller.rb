@@ -93,6 +93,14 @@ class ApplicationController < Sinatra::Base
     redirect to '/'
   end
 
+  # COMMENTS CONTROLLER
+  # Create
+  post '/comments/create' do
+    Comment.create(post_id: params[:post], content: params[:comment])
+
+    redirect to "/posts/#{params[:post]}"
+  end
+
   private
 
   def set_post
