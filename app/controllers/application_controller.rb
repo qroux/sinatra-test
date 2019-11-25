@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'sinatra'
 require 'sinatra/reloader'
 require 'pg'
@@ -38,6 +36,27 @@ class ApplicationController < Sinatra::Base
     erb :show, layout: :layout
   end
 
+  # Upvote/Downvote
+  post '/posts/:id' do
+    set_post
+
+    @post.rating = 0 if @post.rating.nil?
+
+    if params[:sign] == '+'
+      @post.rating += 1
+    else
+      @post.rating.positive? ? @post.rating -= 1 : @post.rating = 0
+    end
+
+    @post.save
+
+    puts 'XXXXXXXXX'
+    puts params
+    puts 'XXXXXXXXX'
+
+    redirect to "/posts/#{@post.id}"
+  end
+
   # import
   get '/import' do
     i = 0
@@ -58,10 +77,17 @@ class ApplicationController < Sinatra::Base
     redirect to '/'
   end
 
+  # flush database
   get '/clear' do
     Post.destroy_all
     Comment.destroy_all
 
     redirect to '/'
+  end
+
+  private
+
+  def set_post
+    @post = Post.find(params[:id])
   end
 end
