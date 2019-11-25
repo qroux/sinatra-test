@@ -1,26 +1,38 @@
 <div class="container bg-light mt-3 py-5 px-5">
-  <h3>Derniers Articles</h3>
+  <h1>Articles Populaires</h1>
   <hr>
   <div class="row">
-     <% @posts.each do |post| %>
-        <div class="col-12">
-          <a href="/posts/<%= post.id %>">
-            <div class="card-product mt-4">
-              <img src="<%= post.photo ||= 'https://picsum.photos/id/1074/600/600'%>" />
-              <div class="card-product-infos">
-                <div class="d-flex justify-content-between">
-                  <div class="">
-                    <h4><%= post.title %></h4>
-                  </div>
-                  <div>
-                    <%= post.rating ||= '-' %> <i class="far fa-star"></i>
-                  </div>
-                </div>
-                <p>créé le: <%= post.created_at.strftime("%d/%m/%Y à %H:%M")  %></p>
+    <% @top_posts.each do |post| %>
+    <div class="col-12 col-md-6">
+      <a href="/posts/<%= post.id %>">
+        <div class="card-product mt-4">
+          <img src="<%= post.photo ||= 'https://picsum.photos/id/1074/600/600'%>" />
+          <div class="card-product-infos">
+            <div class="d-flex justify-content-between">
+              <div class="">
+                <h4><%= post.title %></h4>
+              </div>
+              <div>
+                <%= post.rating ||= '-' %> <i class="far fa-star"></i>
               </div>
             </div>
-          </a>
+            <p>créé le: <%= post.created_at.strftime("%d/%m/%Y à %H:%M")  %></p>
+          </div>
         </div>
-      <% end %>
+      </a>
+    </div>
+    <% end %>
+  </div>
+  <br>
+  <br>
+  <h1>Derniers Articles</h1>
+  <hr>
+  <div class="row">
+    <% @posts.each do |post| %>
+    <div class="posts-list col-12 m-1 py-3">
+      <a href="/posts/<%= post.id %>"><h5><%= post.title.capitalize %></h5></a>
+      <h5><%= post.rating ||= '-' %> <i class="far fa-star"></i></h5>
+    </div>
+    <% end %>
   </div>
 </div>

@@ -2,6 +2,7 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'pg'
 require 'sinatra/activerecord'
+require 'faker'
 
 require_relative '../../db/database'
 require_relative '../models/post.rb'
@@ -24,14 +25,15 @@ class ApplicationController < Sinatra::Base
   # POSTS CONTROLLER
   # index
   get '/' do
-    @posts = Post.order(rating: :desc)
+    @top_posts = Post.order(rating: :desc).first(2)
+    @posts = Post.order(created_at: :desc)
 
     erb :home, layout: :layout
   end
 
   # show
   get '/posts/:id' do
-    @post = Post.find(params[:id])
+    set_post
 
     erb :show, layout: :layout
   end
@@ -49,11 +51,6 @@ class ApplicationController < Sinatra::Base
     end
 
     @post.save
-
-    puts 'XXXXXXXXX'
-    puts params
-    puts 'XXXXXXXXX'
-
     redirect to "/posts/#{@post.id}"
   end
 
@@ -81,6 +78,17 @@ class ApplicationController < Sinatra::Base
   get '/clear' do
     Post.destroy_all
     Comment.destroy_all
+
+    redirect to '/'
+  end
+
+  # generate new random post
+  get '/generate' do
+    Post.create(title: Faker::Marketing.buzzwords,
+                photo: "https://picsum.photos/id/#{rand(1000)}/600/600",
+                content: Faker::Lorem.paragraph(sentence_count: 3,
+                                                supplemental: true,
+                                                random_sentences_to_add: 4))
 
     redirect to '/'
   end

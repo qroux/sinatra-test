@@ -55,6 +55,21 @@ li {
   width: 100%;
 }
 
+/* Home Posts list */
+.posts-list {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid rgba(237, 239, 243, 1);
+  background-color: white;
+  transition: 0.5s;
+}
+.posts-list:hover {
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+.posts-list a {
+  color: black;
+}
+
 /* Show */
 .scard-product {
   background: white;
@@ -95,99 +110,3 @@ li {
   background-color: white;
 }
 
-
-
-
-
-
-
-
-
-
-
-/*.c-photo {
-  height: 200px;
-  width: 300px;
-  background-size: cover;
-}
-*/
-
-/** {
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Raleway', sans-serif;
-  line-height: 1.5;
-  font-size: 1rem;
-  color: #444;
-  margin: 0;
-  background-color: rgb(237, 239, 243);
-}
-
-i{
-  color: #888;
-}*/
-
-/*.my-container {
-  width: 96%;
-  margin: 1rem auto;
-}
-
-.card {
-  height: 120px;
-  display: flex;
-  align-items: center;
-  margin-bottom: 1rem;
-  overflow: hidden;
-  background-color: #fff;
-}
-
-.card div:first-child {
-  flex-basis: 35%;
-}
-
-.card div:last-child {
-  flex-basis: 65%;
-  padding: 0 0.5rem 0.25rem;
-}
-
-.card img {
-  display: block;
-  width: 100%;
-  height: 120px;
-  object-fit: cover;
-}
-
-.card p {
-  margin-top: 0.5rem;
-  margin-bottom: 0.35rem;
-}
-
-.shadow {
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-    0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
-}
-
-.border {
-  border: 1px solid #ddd;
-}
-
-.curve {
-  border-radius: 0.35rem;
-}
-
-@media (min-width: 768px) {
-  .my-container {
-    max-width: 60%;
-  }
-
-  .card div:first-child {
-    flex-basis: 30%;
-  }
-
-  .card div:last-child {
-    flex-basis: 70%;
-  }
-}
-*/

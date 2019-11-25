@@ -1,11 +1,12 @@
 # Gemfile
 source 'https://rubygems.org'
 
+gem 'bundler'
 gem 'sinatra'
 gem 'sinatra-contrib'
-gem 'bundler'
 
 # Database and ORM
+gem 'faker'
 gem 'pg'
 gem 'rake'
 gem 'sinatra-activerecord'
