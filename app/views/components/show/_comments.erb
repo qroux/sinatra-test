@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-12">
+    <div class="d-flex justify-content-between">
+      <h3><%= @post.comments.count ||= 0 %> commentaires </h3>
+    </div>
+    <% @post.comments.each do |comment| %>
+      <div class="comment p-3 my-1">
+        <li><%= comment.content %></li>
+      </div>
+    <% end %>
+    <div>
+      <form method="post" action="/comments/create" class="inline">
+        <input type="text" name="comment">
+        <input type="hidden" name=post value="<%= @post.id %>">
+        <button type="submit" class="btn btn-sm btn-outline-secondary mr-2" title="créer commentaire">
+        <i class="fas fa-plus"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
