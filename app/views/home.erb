@@ -1,9 +1,9 @@
 <div class="container bg-light mt-3 py-5 px-5">
-  <h1>Articles Populaires</h1>
+  <h1 class="">Articles Populaires</h1>
   <hr>
   <div class="row">
     <% @top_posts.each do |post| %>
-    <div class="col-12 col-md-6">
+    <div class="col-12 col-md-6 mb-5">
       <a href="/posts/<%= post.id %>">
         <div class="card-product mt-4">
           <img src="<%= post.photo ||= 'https://picsum.photos/id/1074/600/600'%>" />
@@ -23,14 +23,14 @@
     </div>
     <% end %>
   </div>
-  <br>
-  <br>
-  <h1>Derniers Articles</h1>
-  <hr>
+  <div class="mt-5">
+    <h1>Derniers Articles</h1>
+    <hr>
+  </div>
   <div class="row">
     <% @posts.each do |post| %>
     <a href="/posts/<%= post.id %>" class="col-12">
-      <div class="posts-list m-1 p-3">
+      <div class="posts-list m-1 p-2">
         <h5><%= post.title.capitalize %></h5>
         <h5><%= post.rating ||= '-' %> <i class="far fa-star"></i></h5>
       </div>

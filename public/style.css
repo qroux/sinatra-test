@@ -11,6 +11,14 @@ a {
 li {
   list-style: none;
 }
+#home-logo {
+  font-size: 25px;
+  color: rgba(0,0,0,0.7);
+  transition: 0.5s;
+}
+#home-logo:hover {
+  color: rgba(0,0,0, 1);
+}
 .container-fluid {
   padding: 0
 }
@@ -59,6 +67,7 @@ li {
 .posts-list {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   border: 1px solid rgba(237, 239, 243, 1);
   background-color: white;
   transition: 0.5s;
@@ -68,6 +77,9 @@ li {
 }
 .posts-list a {
   color: black;
+}
+.posts-list i {
+  font-size: 15px;
 }
 
 /* Show */
