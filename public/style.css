@@ -11,17 +11,38 @@ a {
 li {
   list-style: none;
 }
-#home-logo {
-  font-size: 25px;
+
+/* Navbar */
+#nav-items {
+  font-size: 15px;
+  width: 70px;
+}
+.navbar-brand:first-child {
+  border-right: 1px solid rgba(0,0,0,0.1);
+}
+.navbar-brand {
+  transition: 0.5s;
+}
+.navbar-brand:hover {
+  background-color: rgba(0,0,0,0.1);
+}
+
+/* Home Container */
+#home-container {
+  padding: 56px 100px;
+}
+#nav-logo {
+  font-size: 15px;
   color: rgba(0,0,0,0.7);
   transition: 0.5s;
 }
-#home-logo:hover {
+#nav-logo:hover {
   color: rgba(0,0,0, 1);
 }
 .container-fluid {
   padding: 0
 }
+
 
 /* Card Custom Component */
 .card-product {
@@ -40,7 +61,6 @@ li {
 
 .card-product img {
   height: 100%;
-  width: 120px;
   object-fit: cover;
 }
 
@@ -63,6 +83,20 @@ li {
   width: 100%;
 }
 
+#top-post {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (max-width: 1000px) {
+  #top-post {
+    flex-direction: column;
+  }
+}
+
+
+
+
 /* Home Posts list */
 .posts-list {
   display: flex;
@@ -82,6 +116,9 @@ li {
   font-size: 15px;
 }
 
+
+
+
 /* Show */
 .scard-product {
   background: white;
@@ -99,7 +136,10 @@ li {
   margin: 0 50px;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1000px) {
+  #home-container {
+    padding: 56px 15px;
+  }
   .scard-product {
     flex-direction: column;
   }

@@ -3,9 +3,9 @@
     <div class="card-product mt-4">
       <img src="<%= post.photo ||= 'https://picsum.photos/id/1074/600/600'%>" />
       <div class="card-product-infos">
-        <div class="d-flex justify-content-between">
-          <div class="">
-            <h4><%= post.title %></h4>
+        <div id="top-post">
+          <div>
+            <h4><%= post.title.capitalize %></h4>
           </div>
           <div>
             <%= post.rating ||= '-' %> <i class="far fa-star"></i>

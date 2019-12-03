@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-between align-items-start">
-  <h1><%= @post.title  %></h1>
+  <h1><%= @post.title.upcase  %></h1>
   <div>
     <h3><%= @post.rating ||= '-' %> <i class="far fa-star"></i></h3>
   </div>
