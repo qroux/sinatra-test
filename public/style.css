@@ -92,6 +92,9 @@ li {
   #top-post {
     flex-direction: column;
   }
+  #top-post-margin {
+    margin-bottom: 0 !important;
+  }
 }
 
 
