@@ -118,6 +118,9 @@ li {
 .posts-list i {
   font-size: 15px;
 }
+.posts-list h5 {
+  margin-bottom: 0;
+}
 
 
 
