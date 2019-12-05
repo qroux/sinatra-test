@@ -1,18 +1,22 @@
-<div id="home-container" class="container bg-light mt-3">
-  <h1>Articles Populaires</h1>
-  <hr>
-  <div class="row">
-    <% @top_posts.each do |post| %>
-      <%= erb :'components/home/_top-post', layout: false, locals: { post: post } %>
-    <% end %>
-  </div>
-  <div class="mt-5">
-    <h1>Derniers Articles</h1>
+<div id="home-container" class="container mt-5">
+  <div id="post-container" class="">
+    <h1>Articles Populaires</h1>
     <hr>
+    <div class="row home-row">
+      <% @top_posts.each do |post| %>
+        <%= erb :'components/home/_top-post', layout: false, locals: { post: post } %>
+      <% end %>
+    </div>
   </div>
-  <div class="row">
-    <% @posts.each do |post| %>
-      <%= erb :'components/home/_post-list', layout: false, locals: { post: post } %>
-    <% end %>
+  <div id="post-container" class="mt-2">
+    <div class="">
+      <h1>Derniers Articles</h1>
+      <hr>
+    </div>
+    <div class="row home-row">
+      <% @posts.each do |post| %>
+        <%= erb :'components/home/_post-list', layout: false, locals: { post: post } %>
+      <% end %>
+    </div>
   </div>
 </div>
