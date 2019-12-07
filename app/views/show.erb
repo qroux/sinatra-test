@@ -1,12 +1,19 @@
-<div class="bg-light container mt-5 py-5 px-5">
+<div class="bg-light container my-5 py-5 px-5" style="box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
   <div class="row">
     <div class="col-sm-12">
       <%= erb :'components/show/_post-header' %>
       <hr>
       <%= erb :'components/show/_post-content' %>
       <br>
-      <%= erb :'components/show/_votes' %>
+      <% if current_user && current_user.id == @post.user_id %>
+      <% elsif voted %>
+      <% else %>
+        <%= erb :'components/show/_votes' %>
+      <% end %>
+      <br>
+        <%= erb :'components/show/_login-modal' %>
       <hr>
       <%= erb :'components/show/_comments' %>
     </div>
   </div>
+</div>

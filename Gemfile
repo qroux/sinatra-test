@@ -5,6 +5,9 @@ gem 'bundler'
 gem 'sinatra'
 gem 'sinatra-contrib'
 
+# Authentication
+gem 'bcrypt'
+
 # Database and ORM
 gem 'faker'
 gem 'pg'

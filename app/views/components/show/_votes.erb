@@ -5,15 +5,51 @@
         <div class="d-flex justify-content-center">
           <form method="post" action="/posts/<%= @post.id %>" class="inline">
             <input type="hidden" name="sign" value="+">
-            <button type="submit" class="btn btn-sm btn-outline-success mr-2" title="Upvote">
-            <i class="fas fa-chevron-up"></i>
-            </button>
+            <!-- Upvote or Modal toggle if user not connected -->
+            <% if current_user %>
+              <button
+                type="submit"
+                class="btn btn-sm btn-outline-success mr-2"
+                title="Upvote"
+              >
+              <i class="fas fa-chevron-up"></i>
+              </button>
+            <% else %>
+              <button
+                type="button"
+                class="btn btn-sm btn-outline-success mr-2"
+                title="Upvote"
+                data-toggle="modal"
+                data-target="#loginModal"
+              >
+              <i class="fas fa-chevron-up"></i>
+              </button>
+            <% end %>
+            <!-- Upvote end -->
           </form>
           <form method="post" action="/posts/<%= @post.id %>" class="inline">
             <input type="hidden" name="sign" value="-">
-            <button type="submit" class="btn btn-sm btn-outline-danger" title="Downvote">
-            <i class="fas fa-chevron-down"></i>
-            </button>
+            <!-- Downvote or Modal toggle if user not connected -->
+            <% if current_user %>
+              <button
+                type="submit"
+                class="btn btn-sm btn-outline-danger"
+                title="Downvote"
+              >
+              <i class="fas fa-chevron-down"></i>
+              </button>
+            <% else %>
+              <button
+                type="button"
+                class="btn btn-sm btn-outline-danger"
+                title="Downvote"
+                data-toggle="modal"
+                data-target="#loginModal"
+              >
+              <i class="fas fa-chevron-down"></i>
+              </button>
+            <% end %>
+            <!-- Downvote end -->
           </form>
         </div>
         <h5>votes</h5>

@@ -1,6 +1,10 @@
-<div id="home-container" class="container mt-5">
+<div id="home-container" class="container my-5">
   <div id="post-container" class="">
-    <h1>Articles Populaires</h1>
+    <div class="d-flex justify-content-between align-items-center">
+      <h1>Articles Populaires</h1>
+      <%= erb :'components/navbar/_color-button', layout: false %>
+    </div>
+    <%= erb :'components/show/_login-modal' %>
     <hr>
     <div class="row home-row">
       <% @top_posts.each do |post| %>

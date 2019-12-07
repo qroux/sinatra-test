@@ -1,6 +1,7 @@
 <div class="row">
+  <%= erb :'components/show/_edit' %>
   <div class="col-12">
-    <div class="scard-product mt-4">
+    <div class="scard-product mt-4"  style="box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
       <img src="<%= @post.photo ||= 'https://picsum.photos/id/1074/600/600'%>" />
       <div class="scard-product-infos">
         <p><%= @post.content %></p>

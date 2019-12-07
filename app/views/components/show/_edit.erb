@@ -1,0 +1,17 @@
+<div class="col-12 text-right">
+  <% if @post.user_id.nil? || !current_user %>
+  <% elsif current_user.id == @post.user_id %>
+    <a href="" method="put" class="mr-1">
+      <div class="btn btn-sm btn-outline-secondary">
+        <i class="fas fa-pen"></i>
+      </div>
+    </a>
+    <a href="" method="delete">
+      <div class="btn btn-sm btn-outline-secondary">
+        <i class="fas fa-trash-alt"></i>
+      </div>
+    </a>
+  <% end %>
+</div>
+
+<!-- /posts/<%= @post.id %>/edit -->
