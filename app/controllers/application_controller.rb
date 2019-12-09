@@ -34,10 +34,16 @@ class ApplicationController < Sinatra::Base
   configure do
     set :views, 'app/views'
     set :public_dir, 'public'
+    set :show_exceptions, false
   end
 
   # modular controllers
   use UsersController
+
+  # error 500
+  error 500 do
+    erb :'errors/error_500', layout: :layout
+  end
 
   # index
   get '/' do
