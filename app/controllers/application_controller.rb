@@ -49,13 +49,6 @@ class ApplicationController < Sinatra::Base
     erb :home, layout: :layout
   end
 
-  # show
-  get '/posts/:id' do
-    set_post
-
-    erb :show, layout: :layout
-  end
-
   # new
   get '/posts/new' do
     erb :new, layout: :layout
@@ -70,6 +63,13 @@ class ApplicationController < Sinatra::Base
                        user_id: current_user.id)
 
     redirect "/posts/#{post.id}"
+  end
+
+  # show
+  get '/posts/:id' do
+    set_post
+
+    erb :show, layout: :layout
   end
 
   # destroy
