@@ -10,22 +10,22 @@ require 'pg'
 require 'sinatra/activerecord'
 require 'faker'
 
-# File imports
+# Model imports
 require_relative '../../db/database'
 require_relative '../models/user.rb'
 require_relative '../models/post.rb'
 require_relative '../models/comment.rb'
 require_relative '../models/vote.rb'
-# helpers
-# require_relative '../helpers/auth_helper.rb'
+
+# Controllers Import
+require_relative './users_controller'
 
 # running app
 class ApplicationController < Sinatra::Base
-  enable :inline_templates
-  enable :sessions
-
   # configuration
   register Sinatra::ActiveRecordExtension
+  enable :inline_templates
+  enable :sessions
 
   configure :development do
     register Sinatra::Reloader
@@ -36,59 +36,8 @@ class ApplicationController < Sinatra::Base
     set :public_dir, 'public'
   end
 
-  # POSTS CONTROLLER
-  # Log in/out + create user
-  get '/test' do
-    if current_user
-      current_user.update(admin: true)
-
-      redirect '/'
-    else
-      redirect '/sign_in'
-    end
-  end
-
-  get '/sign_in' do
-    if current_user
-      redirect '/'
-    else
-      erb :sign_in, layout: :layout
-    end
-  end
-
-  post '/sign_in' do
-    user = User.find { |u| u.username == params[:username] }
-    if user && test_password(params[:password], user.password_hash)
-      session.clear
-      session[:user_id] = user.id
-      redirect back
-    else
-      @error = 'Username or password was incorrect'
-      erb :sign_in
-    end
-  end
-
-  get '/sign_up' do
-    erb :sign_up, layout: :layout
-  end
-
-  post '/create_user' do
-    user = User.create(username: params[:username],
-                       password_hash: hash_password(params[:password]))
-
-    if user.persisted?
-      session.clear
-      session[:user_id] = user.id
-      redirect '/'
-    else
-      redirect 'sign_up'
-    end
-  end
-
-  get '/sign_out' do
-    session.clear
-    redirect '/'
-  end
+  # modular controllers
+  use UsersController
 
   # index
   get '/' do
@@ -100,11 +49,19 @@ class ApplicationController < Sinatra::Base
     erb :home, layout: :layout
   end
 
-  # create
+  # show
+  get '/posts/:id' do
+    set_post
+
+    erb :show, layout: :layout
+  end
+
+  # new
   get '/posts/new' do
     erb :new, layout: :layout
   end
 
+  # create
   post '/posts/create' do
     post = Post.create(title: params[:title],
                        content: params[:content],
@@ -115,15 +72,17 @@ class ApplicationController < Sinatra::Base
     redirect "/posts/#{post.id}"
   end
 
-  # show
-  get '/posts/:id' do
+  # destroy
+  post '/posts/:id' do
     set_post
 
-    erb :show, layout: :layout
+    @post.destroy if current_user.id == @post.user_id || current_user.admin
+
+    redirect '/'
   end
 
   # Upvote/Downvote
-  post '/posts/:id' do
+  post '/posts/:id/vote' do
     set_post
     @post.rating = 0 if @post.rating.nil?
 
@@ -172,7 +131,7 @@ class ApplicationController < Sinatra::Base
     redirect to '/'
   end
 
-  # generate new random post
+  # generate random post
   get '/generate' do
     Post.create(title: Faker::Marketing.buzzwords,
                 user_id: current_user.id,
@@ -185,9 +144,9 @@ class ApplicationController < Sinatra::Base
     redirect to '/'
   end
 
-  # COMMENTS CONTROLLER
+  # COMMENTS
   # Create
-  post '/comments/create' do
+  post '/comments' do
     Comment.create(post_id: params[:post], content: params[:comment])
 
     redirect to "/posts/#{params[:post]}"
@@ -202,18 +161,7 @@ class ApplicationController < Sinatra::Base
   def voted
     if current_user
       @vote = Vote.find_by(user_id: current_user.id, post_id: @post.id)
-    else
-      nil
     end
-  end
-
-  # Authentication
-  def hash_password(password)
-    BCrypt::Password.create(password).to_s
-  end
-
-  def test_password(password, hash)
-    BCrypt::Password.new(hash) == password
   end
 
   # helpers
@@ -221,8 +169,6 @@ class ApplicationController < Sinatra::Base
     def current_user
       if session[:user_id]
         User.find { |u| u.id == session[:user_id] }
-      else
-        nil
       end
     end
   end

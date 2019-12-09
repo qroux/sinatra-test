@@ -4,7 +4,7 @@ body {
   font-family: 'Raleway', sans-serif;
   background-color: rgb(237, 239, 243);
   background-image:
-  url(https://images.unsplash.com/photo-1494506281370-d80348b928fa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80);
+  url(https://images.unsplash.com/photo-1454117096348-e4abbeba002c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80);
   background-size: cover;
 }
 a {
@@ -41,12 +41,12 @@ nav {
 #nav-logo {
   font-size: 15px;
 }
-@media (max-width: 1000px) {
+@media (max-width: 767px) {
   .nav-link {
     padding: 0 10px;
   }
   .navbar-nav {
-    margin-top: 20px;
+    margin: 10px 0;
   }
 }
 
@@ -95,6 +95,7 @@ nav {
 }
 .card-product img {
   height: 100%;
+  max-width: 120px;
   object-fit: cover;
 }
 .card-product h2 {
@@ -116,6 +117,7 @@ nav {
 #top-post {
   display: flex;
   justify-content: space-between;
+  word-break: break-all;
 }
 #post-container {
   padding: 56px 100px;
@@ -128,6 +130,7 @@ nav {
 @media (max-width: 1000px) {
   #post-container {
     padding: 30px 10px;
+    margin: 0 10px;
   }
   #top-post {
     flex-direction: column;
@@ -167,7 +170,7 @@ nav {
 }
 .scard-product img {
   height: 200px;
-  width: 300px;
+  min-width: 300px;
   object-fit: cover;
 }
 .scard-product .scard-product-infos {

@@ -3,7 +3,7 @@
     <a class="navbar-brand" href="/" title="Retour Accueil">
       <div id="nav-items" class="d-flex flex-column align-items-center p-0">
         <i id="nav-logo" class="fas fa-home"></i>
-        Home
+        Accueil
       </div>
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,6 +17,7 @@
       <% end %>
       <% if current_user %>
         <%= erb :'components/navbar/_button', layout: false, locals: { path: 'sign_out', title: 'Déconnexion', tag: 'Déco', icon: 'fas fa-sign-out-alt' } %>
+        <%= erb :'components/navbar/_button', layout: false, locals: { path: 'admin', title: 'Vue administrateur/utilisateur simple', tag: 'Admin', icon: 'fas fa-user-shield' } %>
       <% else %>
         <%= erb :'components/navbar/_button', layout: false, locals: { path: 'sign_in', title: 'connexion', tag: 'Connexion', icon: 'fas fa-sign-in-alt' } %>
       <% end %>

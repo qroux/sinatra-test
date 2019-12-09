@@ -1,17 +1,17 @@
 <div class="col-12 text-right">
-  <% if @post.user_id.nil? || !current_user %>
-  <% elsif current_user.id == @post.user_id %>
-    <a href="" method="put" class="mr-1">
-      <div class="btn btn-sm btn-outline-secondary">
-        <i class="fas fa-pen"></i>
-      </div>
-    </a>
-    <a href="" method="delete">
-      <div class="btn btn-sm btn-outline-secondary">
-        <i class="fas fa-trash-alt"></i>
-      </div>
-    </a>
+  <% if current_user  %>
+    <% if @post.user_id == current_user.id || current_user.admin %>
+      <form
+        action='/posts/<%= @post.id %>'
+        method='POST'
+        class='pull-right'
+        onclick="return confirm('Voulez vous supprimer cet article ?');"
+      >
+        <button type='submit' class='btn btn-sm btn-outline-secondary'>
+          <i class="fas fa-trash-alt"></i>
+        </button>
+      </form>
+    <% end %>
   <% end %>
 </div>
 
-<!-- /posts/<%= @post.id %>/edit -->

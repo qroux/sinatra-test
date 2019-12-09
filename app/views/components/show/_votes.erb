@@ -3,7 +3,7 @@
     <div class="d-flex justify-content-end">
       <div class="d-flex flex-column align-items-center">
         <div class="d-flex justify-content-center">
-          <form method="post" action="/posts/<%= @post.id %>" class="inline">
+          <form method="post" action="/posts/<%= @post.id %>/vote" class="inline">
             <input type="hidden" name="sign" value="+">
             <!-- Upvote or Modal toggle if user not connected -->
             <% if current_user %>
@@ -27,7 +27,7 @@
             <% end %>
             <!-- Upvote end -->
           </form>
-          <form method="post" action="/posts/<%= @post.id %>" class="inline">
+          <form method="post" action="/posts/<%= @post.id %>/vote" class="inline">
             <input type="hidden" name="sign" value="-">
             <!-- Downvote or Modal toggle if user not connected -->
             <% if current_user %>

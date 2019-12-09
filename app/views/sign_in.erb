@@ -5,10 +5,29 @@
       <% if @error %>
       <p class="error"><%= @error %></p>
       <% end %>
-      <form action="/sign_in" method="POST">
-        <input name="username" placeholder="Username" />
-        <input name="password" type="password" placeholder="Password" />
-        <input type="submit" value="Entrer" />
+      <form
+        action="/sign_in"
+        method="POST"
+        class="form-group d-flex flex-column align-items-center"
+      >
+        <div class="col-12 col-md-6 my-2">
+          <input
+            name="username"
+            placeholder="Email"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="col-12 col-md-6 my-2">
+          <input
+            name="password"
+            type="password"
+            placeholder="Mot de passe"
+            class="form-control"
+            required
+          />
+        </div>
+        <input type="submit" value="Entrer" class="btn btn-secondary my-2" />
       </form>
       <hr>
       <a href="/sign_up" class="m-5">Créer un compte</a>
