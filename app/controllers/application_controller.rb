@@ -139,15 +139,15 @@ class ApplicationController < Sinatra::Base
 
   # generate random post
   get '/generate' do
-    Post.create(title: Faker::Marketing.buzzwords,
-                user_id: current_user.id,
-                photo: "https://picsum.photos/id/#{rand(1000)}/600/600",
-                rating: 0,
-                content: Faker::Lorem.paragraph(sentence_count: 3,
-                                                supplemental: true,
-                                                random_sentences_to_add: 4))
+    post = Post.create(title: Faker::Marketing.buzzwords,
+                       user_id: current_user.id,
+                       photo: "https://picsum.photos/id/#{rand(1000)}/600/600",
+                       rating: 0,
+                       content: Faker::Lorem.paragraph(sentence_count: 3,
+                                                       supplemental: true,
+                                                       random_sentences_to_add: 4))
 
-    redirect to '/'
+    redirect to "/posts/#{post.id}"
   end
 
   # COMMENTS
